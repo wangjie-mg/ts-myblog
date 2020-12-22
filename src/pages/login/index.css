@@ -1,13 +1,16 @@
+body{
+    background: rgb(250,250,250);
+}
 .main-from{
     width:300px;
-    /* padding:20px; */
-    margin: 30% auto;
+    margin: 20% auto;    
 }
-.login-from{
+.login-form{
     max-width: 300px;
     margin-top:6vh;
-    padding: 30px;
-    border:1px solid #ddd;
+    padding: 40px 30px 30px 30px ;
+    background: #fff !important;
+    border:1px solid #ddd !important;
 }
 .icon{
 color:rgba(0,0,0,0.25);
@@ -18,6 +21,9 @@ color:rgba(0,0,0,0.25);
 .from-img  img{
     height:80px;
 }
+.ant-form-item{
+    margin-bottom: 15px !important;
+}
 .login-form-forgot {
     float: right;
 }
@@ -26,7 +32,15 @@ color:rgba(0,0,0,0.25);
     width: 100%;
     height: 2.8rem;
 }
+.blue{
+    color: #1890ff;
+}
 /* button{
     padding:0;
     border:non
 } */
+.footer{
+    display: block;
+    margin-top:20px;
+    text-align: center;
+}
