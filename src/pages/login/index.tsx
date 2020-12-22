@@ -2,12 +2,14 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import { Form, Input, Button, Checkbox, message } from 'antd';
 import { MailOutlined, SafetyOutlined  } from '@ant-design/icons';
+import {useStore} from '../../model/index';
 import Img from '../img/myblog.png';
 import './index.css';
 
+const {Search} = Input;
 const Login: React.FC = () => {
-    const flag=React.useState(true);
-    const {Search}=Input;
+    // const flag = React.useState(false);
+    const [state] = useStore('login');
 
     const onfinish=(values:any)=>{
         //发送标识和验证码给后端，后端根据标识判断验证码是否正确。
@@ -31,7 +33,6 @@ const Login: React.FC = () => {
             initialValues={{ remember: true }}
             onFinish={onfinish}
         >
-            
             <Form.Item
                 name="email"
                 rules={[
@@ -45,39 +46,35 @@ const Login: React.FC = () => {
                 },
                 ]}
             >
-                <Input prefix={<MailOutlined className="icon"/>} placeholder="E-mail"/>
+                <Input 
+                    prefix={<MailOutlined className="icon"/>} 
+                    placeholder="邮箱" 
+                    size="large"
+                />
             </Form.Item>
             <Form.Item
                 name="password"
-                rules={[{ required: true, message: 'Please input your Password!' }]}
+                rules={[{ required: true, message: '请输入验证码！' }]}
             >
                 <Search
                     prefix={<SafetyOutlined className="icon"/>}
-                    placeholder="input search text"
+                    placeholder="验证码"
                     allowClear
                     enterButton="获取验证码"
                     size="large"
                     onSearch={onSearch}
                 />
+                
             </Form.Item>
+            <p className="blue">无需注册，登录默认注册账号！！！</p>
             <Form.Item>
-                <Form.Item name="remember" valuePropName="checked" noStyle>
-                    <Checkbox>Remember me</Checkbox>
-                </Form.Item>
-
-                <Link to="/">
-                    Forgot password
-                </Link>
-            </Form.Item>
-
-            <Form.Item>
-                <Button type="primary" htmlType="submit" className="login-form-button" >
+                <Button type="primary" htmlType="submit" className="login-form-button" disabled={state.flag}>
                     登录
                 </Button>
-                Or 
-                <Link to="/">register now!</Link>
             </Form.Item>
         </Form>
+<p className="footer">ZYPC©2020 Created 仅供学习交流</p>
+        
         </div>
     );
 }
